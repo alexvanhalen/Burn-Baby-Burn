@@ -91,13 +91,13 @@ $$\ket{\alpha} = a_1\ket{e_1} + a_2\ket{e_2} + \cdots + a_n\ket{e_n} $$
 
 其中
 
-$$ (a_1, a_2,..., a_n) = \left[
+\[ (a_1, a_2,..., a_n) = \left[
 \begin{array}{c} 
 a_1 \\ 
 a_2 \\ 
 \vdots \\ 
 a_n 
-\end{array}\right] $$
+\end{array}\right] \]
 
 稱為$\ket{\alpha}$相對於基底$\mathcal{B}$之座標向量 (coordinate vector)，當$\mathcal{B}$選定時，座標向量是唯一的。
 
