@@ -159,7 +159,7 @@ $$ \bk{\alpha}{\beta} = \sum_i\sum_j a_i^* b_j\bk{i}{j} $$
 
 我們將在稍後證明上述定理 (應該會吧！)，現在先將其視位正確的，則不失一般性，我們可以假設前述的基底是單範正交基底，亦即
 
-$$ \bk{i}{j} = \delta_{ij} = \left\{\begin{array}{l} 1,\,\,\,\, i=j \\ 0,\,\,\,\, i\ne j\end{array}\right. $$
+$$ \bk{i}{j} = \delta_{ij} = \left\{\begin{array}{l} 1,\,\,\,\, i=j \\\ 0,\,\,\,\, i\ne j\end{array}\right\. $$
 
 其中$\delta_{ij}$稱為Kronecker Delta。將此結果代入前一個方程式，可得
 
