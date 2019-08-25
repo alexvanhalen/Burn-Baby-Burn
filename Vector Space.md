@@ -89,7 +89,7 @@ $$ a\ket{\alpha} + b\ket{\beta} +c\ket{\gamma} + \cdots = \ket{0} $$
 
 $$\ket{\alpha} = a_1\ket{e_1} + a_2\ket{e_2} + \cdots + a_n\ket{e_n} $$
 
-其中$(a_1, a_2,..., a_n) = \left\[\begin{array}{c} a_1 \\ a_2 \\ \cdots \\ a_n \end{array}\right\] $
+其中$(a_1, a_2,..., a_n) = \left\[\begin{array}{c} a_1 \\ a_2 \\ \cdots \\ a_n \end{array}\right\]^T $
 稱為$\ket{\alpha}$相對於基底$\mathcal{B}$之座標向量 (coordinate vector)，當$\mathcal{B}$選定時，座標向量是唯一的。
 
 
@@ -115,8 +115,69 @@ $$ \ket{e_j} = -\frac{(a_1 - b_1)}{(a_j - b_j)}\ket{e_1} - \frac{(a_2 - b_2)}{(a
 此式意味$\ket{e_j}$可以表示為其他$(n-1)$個向量的線性組合，所以$\mathcal{B}$不為基底，此與問題假設矛盾，因此可知所有分量必須相等$a_1 = b_1$, $a_2 = b_3$,..., $a_n = b_n$，亦即座標向量是唯一的。
 
 
+定義：設$(\mathbb{V}, \mathbb{F})$是一個向量空間，$\mathbb{V}$上的內積 (inner product) 是一個函數，記做$\bk{\cdot}{\cdot}: \mathbb{V}\times\mathbb{V}\rightarrow \mathbb{F}$，且對所有的$\ket{\alpha}, \ket{\beta}, \ket{\gamma}\in\mathbb{V}$，滿足
 
 
+
+$\bk{\alpha +\beta}{\gamma} = \bk{\alpha}{\gamma} + \bk{\beta}{\gamma}.$
+$\bk{a\alpha}{\beta} = a\bk{\alpha}{\beta}.$
+$\bk{\alpha}{\beta} = \bk{\beta}{\alpha}^*.$ (其中，'*'表示共軛複數。)
+若$\ket{\alpha}\ne\ket{0}$，則$\bk{\alpha}{\alpha} > 0$。
+一個具有內積函數的向量空間，稱為內積空間 (inner product space)。
+
+
+
+定義：考慮一個內積空間$\mathbb{V}$，若$\bk{\alpha}{\beta}=0$，則稱此二向量為正交 (orthogonal)。
+
+
+
+定義：假設$\mathbb{V}$是一個內積空間，定義$\Vert\alpha\Vert = \sqrt{\bk{\alpha}{\alpha}}$為$\ket{\alpha}$的長度或範數 (norm)，範數為1的向量稱為單位向量 (unit vector)。
+
+
+
+定義：一組基底中，若所有向量的長度皆為1，且兩兩正交，則稱該基底為單範正交基底 (orthonormal basis)。
+
+
+
+考慮一個向量空間$\mathbb{V}$，假設$\mathcal{B} = \{\ket{1}, \ket{2}, ..., \ket{n}\}$是$\mathbb{V}$的一組基底，則任意的向量$\ket{\alpha}$, $\ket{\beta}$可以表示為：
+
+$$\ket{\alpha} = \sum_i a_i\ket{i} $$
+
+$$ \ket{\beta} = \sum_j b_j\ket{j} $$
+
+由內積的性質可知：
+
+$$ \bk{\alpha}{\beta} = \sum_i\sum_j a_i^* b_j\bk{i}{j} $$
+
+若欲進一步推導，則需要知道如何計算$\bk{i}{j}$。一般而言$\ket{i}$, $\ket{j}$不一定正交，但依據Gram-Schmidt定理，我們一定可以由$\mathcal{B}$造出一組正交基底。
+
+
+
+定理：(Gram-Schmidt Orthogonalization Process) 給定一組線性獨立的向量，則必定可以經過適當的線性組合，得到一組單範正交的集合。
+
+
+
+我們將在稍後證明上述定理 (應該會吧！)，現在先將其視位正確的，則不失一般性，我們可以假設前述的基底是單範正交基底，亦即
+
+$$ \bk{i}{j} = \delta_{ij} = \left\{\begin{array}{l} 1,\,\,\,\, i=j \\ 0,\,\,\,\, i\ne j\end{array}\right. $$
+
+其中$\delta_{ij}$稱為Kronecker Delta。將此結果代入前一個方程式，可得
+
+$$ \bk{\alpha}{\beta} = \sum_i a_i^*b_j $$
+
+本文前面曾經提到，當選定基底$\mathcal{B}$時，$\ket{\alpha}$的座標向量可以唯一決定，亦即在此基底之下，$\ket{\alpha}$可以等效地以行向量 (column vector) 來表示：
+
+$$ \ket{\alpha}\rightarrow \left[\begin{array}{c} a_1 \\ a_2 \\ \vdots \\ a_n \end{array}\right]  $$
+
+同理，$\ket{\beta}$可以表示為：
+
+$$ \ket{\beta}\rightarrow \left[\begin{array}{c} b_1 \\ b_2 \\ \vdots \\ b_n \end{array}\right]  $$
+
+如此一來，內積$\bk{\alpha}{\beta}$可以等效地寫為$\ket{\alpha}$的行座標向量之共軛轉置與$\ket{\beta}$之行座標向量的矩陣乘積，亦即
+
+$$ \bk{\alpha}{\beta} = [a_1^*,\, a_2^*,\ldots, a_n^*]\left[\begin{array}{c} b_1 \\ b_2 \\ \vdots \\ b_n \end{array}\right] $$
+
+上述的過程可以視為是將抽象的ket-vector，"具體化"成一個$\mathbb{R}^n$空間中的行向量。這個過程也可以反轉過來，想成是將一個行向量，"抽象化"變成一個ket-vector。同樣的道理，我們也可以將每一個列向量 (row vector)，例如上面的$[a_1^*,\, a_2^*,\ldots, a_n^*]$，抽象化成一個"物件"，Paul Dirac稱這個"物件"為bra-vector (出現了！)，並記做$\bra{\alpha}$。也可以等效地想成是將ket-vector $\ket{\alpha}$取其共軛轉置之後，得到bra-vector $\bra{\alpha}$。所以實際上我們有兩個空間，一個是由ket-vector組成，也就是原本的向量空間$\mathbb{V}$，另一個空間是由bra-vector所組成，稱為對偶空間 (dual space)，內積實際上是bras與kets之間的數學運算。可以找到一組向量$\ket{i}$形成kets空間的基底，同樣也可以找到另一組向量$\bra{i}$，形成bras空間的基底。
 
 
 
